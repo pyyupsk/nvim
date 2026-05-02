@@ -217,6 +217,7 @@ return {
         { "<leader>f", group = "find/file" },
         { "<leader>g", group = "git" },
         { "<leader>l", group = "lsp" },
+        { "<leader>q", group = "session" },
         { "<leader>s", group = "search" },
         { "<leader>t", group = "terminal/test" },
         { "<leader>u", group = "ui" },
@@ -225,6 +226,20 @@ return {
     },
     keys = {
       { "<leader>?", function() require("which-key").show({ global = false }) end, desc = "Buffer keymaps" },
+    },
+  },
+
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    ft = { "markdown", "Avante" },
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
+    opts = {
+      file_types = { "markdown", "Avante" },
+      code = { sign = false, width = "block", right_pad = 1 },
+      heading = { sign = false, icons = { "󰲡 ", "󰲣 ", "󰲥 ", "󰲧 ", "󰲩 ", "󰲫 " } },
+    },
+    keys = {
+      { "<leader>um", "<cmd>RenderMarkdown toggle<cr>", desc = "Toggle render-markdown" },
     },
   },
 }

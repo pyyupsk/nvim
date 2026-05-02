@@ -168,4 +168,25 @@ return {
       { "<C-s>", mode = "c", function() require("flash").toggle() end, desc = "Toggle flash search" },
     },
   },
+
+  {
+    "folke/persistence.nvim",
+    event = "BufReadPre",
+    opts = {},
+    keys = {
+      { "<leader>qs", function() require("persistence").load() end, desc = "Restore session" },
+      { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore last session" },
+      { "<leader>qd", function() require("persistence").stop() end, desc = "Don't save session" },
+    },
+  },
+
+  {
+    "MagicDuck/grug-far.nvim",
+    cmd = { "GrugFar", "GrugFarWithin" },
+    opts = {},
+    keys = {
+      { "<leader>sR", function() require("grug-far").open() end, desc = "Search & replace" },
+      { "<leader>sR", function() require("grug-far").with_visual_selection() end, mode = "v", desc = "Search & replace selection" },
+    },
+  },
 }

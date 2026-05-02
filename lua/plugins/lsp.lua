@@ -209,4 +209,19 @@ return {
       })
     end,
   },
+
+  {
+    "luckasRanarison/tailwind-tools.nvim",
+    ft = { "html", "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte", "astro" },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    build = ":UpdateRemotePlugins",
+    opts = {
+      document_color = { enabled = true, kind = "inline", inline_symbol = "󰝤 " },
+      conceal = { enabled = false },
+    },
+    keys = {
+      { "<leader>cT", "<cmd>TailwindSort<cr>", desc = "Sort Tailwind classes" },
+      { "<leader>cT", "<cmd>'<,'>TailwindSortSelection<cr>", mode = "v", desc = "Sort Tailwind classes" },
+    },
+  },
 }
