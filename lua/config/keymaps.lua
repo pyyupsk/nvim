@@ -8,6 +8,11 @@ map({ "n", "v", "i" }, "<C-j>", "<Esc><C-w>j", { desc = "Window down" })
 map({ "n", "v", "i" }, "<C-k>", "<Esc><C-w>k", { desc = "Window up" })
 map({ "n", "v", "i" }, "<C-l>", "<Esc><C-w>l", { desc = "Window right" })
 
+map("t", "<C-h>", "<C-\\><C-n><C-w>h", { desc = "Window left" })
+map("t", "<C-j>", "<C-\\><C-n><C-w>j", { desc = "Window down" })
+map("t", "<C-k>", "<C-\\><C-n><C-w>k", { desc = "Window up" })
+map("t", "<C-l>", "<C-\\><C-n><C-w>l", { desc = "Window right" })
+
 map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Resize up" })
 map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Resize down" })
 map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Resize left" })
