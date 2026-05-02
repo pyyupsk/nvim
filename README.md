@@ -80,6 +80,12 @@ Leader: `<Space>` · Localleader: `\`
 | `<leader>aa` | Accept diff     |
 | `<leader>ad` | Deny diff       |
 
+### Windows
+| Key                   | Action                          |
+| --------------------- | ------------------------------- |
+| `<C-h/j/k/l>`         | Move focus (works in term mode) |
+| `<C-Up/Down/L/R>`     | Resize                          |
+
 ### Misc
 | Key          | Action               |
 | ------------ | -------------------- |
