@@ -14,7 +14,6 @@ Personal Neovim config. Lua. Plugin manager: `lazy.nvim`. Leader: `<Space>`, loc
 - `lua/plugins/*.lua` — one file per concern (`lsp`, `completion`, `editor`, `explorer`, `git`, `telescope`, `treesitter`, `ui`, `claudecode`). Each returns a lazy spec table; lazy auto-imports them.
   - `editor.lua` also owns session restore (`persistence.nvim`, `<leader>q*`) and project search/replace (`grug-far.nvim`, `<leader>sR`).
   - `ui.lua` owns markdown rendering (`render-markdown.nvim`, `<leader>um`).
-  - `lsp.lua` owns Tailwind class sort + inline color (`tailwind-tools.nvim`, `<leader>cT`).
 - `lazy-lock.json` — committed lockfile; do not hand-edit.
 
 ## LSP / Tooling Architecture (`lua/plugins/lsp.lua`)

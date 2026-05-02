@@ -32,7 +32,7 @@ lua/config/
   autocmds.lua
   lazy.lua             -- lazy bootstrap + plugin import
 lua/plugins/
-  lsp.lua              -- mason, lspconfig, conform, lint, tailwind-tools
+  lsp.lua              -- mason, lspconfig, conform, lint
   completion.lua       -- blink.cmp
   editor.lua           -- autopairs, surround, comment, flash, persistence, grug-far
   explorer.lua         -- neo-tree, oil
@@ -67,7 +67,6 @@ Leader: `<Space>` · Localleader: `\`
 | `<leader>cf` | Format buffer     |
 | `<leader>la` | Code action       |
 | `<leader>lr` | Rename            |
-| `<leader>cT` | Sort Tailwind     |
 
 ### AI (claudecode)
 | Key          | Action          |
