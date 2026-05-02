@@ -48,6 +48,16 @@ return {
           end
         end,
       })
+
+      local function dim_hidden()
+        vim.api.nvim_set_hl(0, "NeoTreeDotfile", { link = "NeoTreeGitIgnored" })
+        vim.api.nvim_set_hl(0, "NeoTreeHiddenByName", { link = "NeoTreeGitIgnored" })
+      end
+      dim_hidden()
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        group = vim.api.nvim_create_augroup("neotree_dim_hidden", { clear = true }),
+        callback = dim_hidden,
+      })
     end,
     opts = {
       sources = { "filesystem", "buffers", "git_status" },
@@ -58,7 +68,7 @@ return {
         use_libuv_file_watcher = true,
         filtered_items = {
           visible = false,
-          hide_dotfiles = true,
+          hide_dotfiles = false,
           hide_gitignored = true,
           hide_by_name = { ".DS_Store", "thumbs.db", "node_modules" },
           never_show = {},
