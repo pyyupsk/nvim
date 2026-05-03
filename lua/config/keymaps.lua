@@ -41,5 +41,12 @@ map("n", "<leader>q", "<cmd>confirm q<cr>", { desc = "Quit" })
 
 map("n", "<leader>x", "<cmd>!chmod +x %<cr>", { desc = "Make executable", silent = true })
 
+map({ "n" }, "<C-/>", "gcc", { desc = "Comment line", remap = true })
+map({ "n" }, "<C-_>", "gcc", { desc = "Comment line", remap = true })
+map("v", "<C-/>", "gc", { desc = "Comment selection", remap = true })
+map("v", "<C-_>", "gc", { desc = "Comment selection", remap = true })
+map("i", "<C-/>", "<Esc>gcc", { desc = "Comment line", remap = true })
+map("i", "<C-_>", "<Esc>gcc", { desc = "Comment line", remap = true })
+
 map("n", "q", "<nop>", { desc = "Disable macro recording" })
 map("n", "Q", "<nop>", { desc = "Disable Ex mode" })

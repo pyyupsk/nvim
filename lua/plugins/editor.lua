@@ -13,21 +13,6 @@ return {
   },
 
   {
-    "numToStr/Comment.nvim",
-    keys = {
-      { "gc", mode = { "n", "v" }, desc = "Comment toggle" },
-      { "gb", mode = { "n", "v" }, desc = "Comment block" },
-      { "<C-/>", "<Plug>(comment_toggle_linewise_current)", mode = "n", desc = "Comment line" },
-      { "<C-_>", "<Plug>(comment_toggle_linewise_current)", mode = "n", desc = "Comment line" },
-      { "<C-/>", "<Plug>(comment_toggle_linewise_visual)", mode = "v", desc = "Comment selection" },
-      { "<C-_>", "<Plug>(comment_toggle_linewise_visual)", mode = "v", desc = "Comment selection" },
-      { "<C-/>", "<Esc><Plug>(comment_toggle_linewise_current)", mode = "i", desc = "Comment line" },
-      { "<C-_>", "<Esc><Plug>(comment_toggle_linewise_current)", mode = "i", desc = "Comment line" },
-    },
-    opts = {},
-  },
-
-  {
     "folke/todo-comments.nvim",
     event = { "BufReadPost", "BufNewFile" },
     dependencies = { "nvim-lua/plenary.nvim" },
