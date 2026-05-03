@@ -11,7 +11,7 @@ Personal Neovim config. TypeScript-first, lazy-loaded, opinionated.
 - **Lint** — `nvim-lint` (`eslint_d`)
 - **Treesitter** — `main` branch
 - **Theme** — Catppuccin Mocha
-- **AI** — `claudecode.nvim`
+- **AI** — `claudecode.nvim` · `windsurf.vim` (Codeium inline completions)
 
 ## Install
 
@@ -177,6 +177,18 @@ Leader: `<Space>` · Localleader: `\`
 | `<leader>as` | Send selection |
 | `<leader>aa` | Accept diff    |
 | `<leader>ad` | Deny diff      |
+
+### AI (Codeium / windsurf.vim)
+
+| Key     | Action              |
+| ------- | ------------------- |
+| `Alt+y` | Accept suggestion   |
+| `Alt+w` | Accept next word    |
+| `Alt+]` | Next suggestion     |
+| `Alt+[` | Prev suggestion     |
+| `Alt+e` | Clear suggestion    |
+
+Run `:Codeium Auth` once after install to authenticate.
 
 ## Commands
 

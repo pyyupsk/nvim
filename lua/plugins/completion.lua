@@ -1,5 +1,19 @@
 return {
   {
+    "Exafunction/windsurf.vim",
+    event = "InsertEnter",
+    config = function()
+      vim.g.codeium_disable_bindings = 1
+      local map = vim.keymap.set
+      map("i", "<M-y>", function() return vim.fn["codeium#Accept"]() end, { expr = true, silent = true, desc = "Codeium: accept" })
+      map("i", "<M-w>", function() return vim.fn["codeium#AcceptNextWord"]() end, { expr = true, silent = true, desc = "Codeium: accept word" })
+      map("i", "<M-]>", function() return vim.fn["codeium#CycleCompletions"](1) end, { expr = true, silent = true, desc = "Codeium: next" })
+      map("i", "<M-[>", function() return vim.fn["codeium#CycleCompletions"](-1) end, { expr = true, silent = true, desc = "Codeium: prev" })
+      map("i", "<M-e>", function() return vim.fn["codeium#Clear"]() end, { expr = true, silent = true, desc = "Codeium: clear" })
+    end,
+  },
+
+  {
     "saghen/blink.cmp",
     event = { "InsertEnter", "CmdlineEnter" },
     version = "*",
