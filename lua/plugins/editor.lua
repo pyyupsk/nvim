@@ -17,8 +17,20 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     dependencies = { "nvim-lua/plenary.nvim" },
     keys = {
-      { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo" },
-      { "[t", function() require("todo-comments").jump_prev() end, desc = "Prev todo" },
+      {
+        "]t",
+        function()
+          require("todo-comments").jump_next()
+        end,
+        desc = "Next todo",
+      },
+      {
+        "[t",
+        function()
+          require("todo-comments").jump_prev()
+        end,
+        desc = "Prev todo",
+      },
       { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo list" },
     },
     opts = {},
@@ -46,10 +58,14 @@ return {
       { "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", desc = "Float terminal" },
       { "<leader>th", "<cmd>ToggleTerm size=10 direction=horizontal<cr>", desc = "Horizontal terminal" },
       { "<leader>tv", "<cmd>ToggleTerm size=80 direction=vertical<cr>", desc = "Vertical terminal" },
-      { "<leader>tg", function()
-        local Terminal = require("toggleterm.terminal").Terminal
-        Terminal:new({ cmd = "lazygit", direction = "float", hidden = true }):toggle()
-      end, desc = "Lazygit" },
+      {
+        "<leader>tg",
+        function()
+          local Terminal = require("toggleterm.terminal").Terminal
+          Terminal:new({ cmd = "lazygit", direction = "float", hidden = true }):toggle()
+        end,
+        desc = "Lazygit",
+      },
     },
     opts = {
       open_mapping = [[<C-\>]],
@@ -129,16 +145,30 @@ return {
       local mc = require("multicursor-nvim")
       mc.setup()
       local map = vim.keymap.set
-      map({ "n", "v" }, "<C-d>", function() mc.matchAddCursor(1) end, { desc = "MC: add next match" })
-      map({ "n", "v" }, "<C-S-d>", function() mc.matchSkipCursor(1) end, { desc = "MC: skip next match" })
-      map({ "n", "v" }, "<leader>ma", function() mc.matchAllAddCursors() end, { desc = "MC: select all matches" })
-      map({ "n", "v" }, "<C-Down>", function() mc.lineAddCursor(1) end, { desc = "MC: cursor below" })
-      map({ "n", "v" }, "<C-Up>", function() mc.lineAddCursor(-1) end, { desc = "MC: cursor above" })
+      map({ "n", "v" }, "<C-d>", function()
+        mc.matchAddCursor(1)
+      end, { desc = "MC: add next match" })
+      map({ "n", "v" }, "<C-S-d>", function()
+        mc.matchSkipCursor(1)
+      end, { desc = "MC: skip next match" })
+      map({ "n", "v" }, "<leader>ma", function()
+        mc.matchAllAddCursors()
+      end, { desc = "MC: select all matches" })
+      map({ "n", "v" }, "<C-Down>", function()
+        mc.lineAddCursor(1)
+      end, { desc = "MC: cursor below" })
+      map({ "n", "v" }, "<C-Up>", function()
+        mc.lineAddCursor(-1)
+      end, { desc = "MC: cursor above" })
       map({ "n", "v" }, "<C-LeftMouse>", mc.handleMouse, { desc = "MC: add cursor (click)" })
       map("n", "<Esc>", function()
-        if not mc.cursorsEnabled() then mc.enableCursors()
-        elseif mc.hasCursors() then mc.clearCursors()
-        else vim.cmd("nohlsearch") end
+        if not mc.cursorsEnabled() then
+          mc.enableCursors()
+        elseif mc.hasCursors() then
+          mc.clearCursors()
+        else
+          vim.cmd("nohlsearch")
+        end
       end, { desc = "Clear cursors / search" })
     end,
   },
@@ -148,9 +178,30 @@ return {
     event = "VeryLazy",
     opts = {},
     keys = {
-      { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash TS" },
-      { "<C-s>", mode = "c", function() require("flash").toggle() end, desc = "Toggle flash search" },
+      {
+        "s",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump()
+        end,
+        desc = "Flash",
+      },
+      {
+        "S",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").treesitter()
+        end,
+        desc = "Flash TS",
+      },
+      {
+        "<C-s>",
+        mode = "c",
+        function()
+          require("flash").toggle()
+        end,
+        desc = "Toggle flash search",
+      },
     },
   },
 
@@ -159,9 +210,27 @@ return {
     event = "BufReadPre",
     opts = {},
     keys = {
-      { "<leader>qs", function() require("persistence").load() end, desc = "Restore session" },
-      { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore last session" },
-      { "<leader>qd", function() require("persistence").stop() end, desc = "Don't save session" },
+      {
+        "<leader>qs",
+        function()
+          require("persistence").load()
+        end,
+        desc = "Restore session",
+      },
+      {
+        "<leader>ql",
+        function()
+          require("persistence").load({ last = true })
+        end,
+        desc = "Restore last session",
+      },
+      {
+        "<leader>qd",
+        function()
+          require("persistence").stop()
+        end,
+        desc = "Don't save session",
+      },
     },
   },
 
@@ -170,8 +239,21 @@ return {
     cmd = { "GrugFar", "GrugFarWithin" },
     opts = {},
     keys = {
-      { "<leader>sR", function() require("grug-far").open() end, desc = "Search & replace" },
-      { "<leader>sR", function() require("grug-far").with_visual_selection() end, mode = "v", desc = "Search & replace selection" },
+      {
+        "<leader>sR",
+        function()
+          require("grug-far").open()
+        end,
+        desc = "Search & replace",
+      },
+      {
+        "<leader>sR",
+        function()
+          require("grug-far").with_visual_selection()
+        end,
+        mode = "v",
+        desc = "Search & replace selection",
+      },
     },
   },
 }

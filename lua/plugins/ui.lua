@@ -9,28 +9,28 @@ return {
       transparent_background = false,
       custom_highlights = function(c)
         return {
-          Function       = { fg = c.blue },
-          Identifier     = { fg = c.blue },
-          ["@function"]  = { fg = c.blue },
+          Function = { fg = c.blue },
+          Identifier = { fg = c.blue },
+          ["@function"] = { fg = c.blue },
           ["@function.builtin"] = { fg = c.blue },
-          ["@function.method"]  = { fg = c.blue },
-          ["@constructor"]      = { fg = c.blue },
-          Type           = { fg = c.sapphire },
-          Statement      = { fg = c.blue },
-          Keyword        = { fg = c.blue },
-          ["@keyword"]   = { fg = c.blue },
-          Special        = { fg = c.sapphire },
-          CursorLineNr   = { fg = c.blue, bold = true },
-          MatchParen     = { fg = c.blue, bg = c.surface1, bold = true },
-          Visual         = { bg = c.surface1 },
-          Search         = { fg = c.base, bg = c.blue },
-          IncSearch      = { fg = c.base, bg = c.sky },
-          TelescopeBorder        = { fg = c.blue },
+          ["@function.method"] = { fg = c.blue },
+          ["@constructor"] = { fg = c.blue },
+          Type = { fg = c.sapphire },
+          Statement = { fg = c.blue },
+          Keyword = { fg = c.blue },
+          ["@keyword"] = { fg = c.blue },
+          Special = { fg = c.sapphire },
+          CursorLineNr = { fg = c.blue, bold = true },
+          MatchParen = { fg = c.blue, bg = c.surface1, bold = true },
+          Visual = { bg = c.surface1 },
+          Search = { fg = c.base, bg = c.blue },
+          IncSearch = { fg = c.base, bg = c.sky },
+          TelescopeBorder = { fg = c.blue },
           TelescopeSelectionCaret = { fg = c.blue },
-          TelescopeMatching      = { fg = c.blue },
-          NeoTreeDirectoryIcon   = { fg = c.blue },
-          NeoTreeDirectoryName   = { fg = c.blue },
-          NeoTreeRootName        = { fg = c.blue, bold = true },
+          TelescopeMatching = { fg = c.blue },
+          NeoTreeDirectoryIcon = { fg = c.blue },
+          NeoTreeDirectoryName = { fg = c.blue },
+          NeoTreeRootName = { fg = c.blue, bold = true },
           BufferLineIndicatorSelected = { fg = c.blue },
         }
       end,
@@ -92,14 +92,14 @@ return {
         enabled = true,
         preset = {
           keys = {
-            { icon = " ", key = "f", desc = "Find file",   action = ":lua Snacks.dashboard.pick('files')" },
-            { icon = " ", key = "n", desc = "New file",    action = ":ene | startinsert" },
-            { icon = " ", key = "g", desc = "Find text",   action = ":lua Snacks.dashboard.pick('live_grep')" },
-            { icon = " ", key = "r", desc = "Recent",      action = ":lua Snacks.dashboard.pick('oldfiles')" },
-            { icon = " ", key = "c", desc = "Config",      action = ":e $MYVIMRC" },
-            { icon = "󰒲 ", key = "l", desc = "Lazy",        action = ":Lazy" },
-            { icon = " ", key = "m", desc = "Mason",       action = ":Mason" },
-            { icon = " ", key = "q", desc = "Quit",        action = ":qa" },
+            { icon = " ", key = "f", desc = "Find file", action = ":lua Snacks.dashboard.pick('files')" },
+            { icon = " ", key = "n", desc = "New file", action = ":ene | startinsert" },
+            { icon = " ", key = "g", desc = "Find text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+            { icon = " ", key = "r", desc = "Recent", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+            { icon = " ", key = "c", desc = "Config", action = ":e $MYVIMRC" },
+            { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
+            { icon = " ", key = "m", desc = "Mason", action = ":Mason" },
+            { icon = " ", key = "q", desc = "Quit", action = ":qa" },
           },
           header = table.concat({
             "",
@@ -119,10 +119,34 @@ return {
       },
     },
     keys = {
-      { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss notifications" },
-      { "<leader>uN", function() Snacks.notifier.show_history() end, desc = "Notification history" },
-      { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete buffer" },
-      { "<leader>bD", function() Snacks.bufdelete.other() end, desc = "Delete other buffers" },
+      {
+        "<leader>un",
+        function()
+          Snacks.notifier.hide()
+        end,
+        desc = "Dismiss notifications",
+      },
+      {
+        "<leader>uN",
+        function()
+          Snacks.notifier.show_history()
+        end,
+        desc = "Notification history",
+      },
+      {
+        "<leader>bd",
+        function()
+          Snacks.bufdelete()
+        end,
+        desc = "Delete buffer",
+      },
+      {
+        "<leader>bD",
+        function()
+          Snacks.bufdelete.other()
+        end,
+        desc = "Delete other buffers",
+      },
     },
   },
 
@@ -168,7 +192,13 @@ return {
         indicator = { style = "icon", icon = "▎" },
         separator_style = "thin",
         offsets = {
-          { filetype = "neo-tree", text = "Neo-tree", highlight = "Directory", text_align = "left", position = "right" },
+          {
+            filetype = "neo-tree",
+            text = "Neo-tree",
+            highlight = "Directory",
+            text_align = "left",
+            position = "right",
+          },
         },
       },
       highlights = {
@@ -236,7 +266,13 @@ return {
       },
     },
     keys = {
-      { "<leader>?", function() require("which-key").show({ global = false }) end, desc = "Buffer keymaps" },
+      {
+        "<leader>?",
+        function()
+          require("which-key").show({ global = false })
+        end,
+        desc = "Buffer keymaps",
+      },
     },
   },
 

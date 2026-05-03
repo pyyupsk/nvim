@@ -12,16 +12,22 @@ return {
       "nvim-tree/nvim-web-devicons",
       "MunifTanjim/nui.nvim",
     },
-    deactivate = function() vim.cmd([[Neotree close]]) end,
+    deactivate = function()
+      vim.cmd([[Neotree close]])
+    end,
     init = function()
       vim.api.nvim_create_autocmd("VimEnter", {
         group = vim.api.nvim_create_augroup("neotree_start", { clear = true }),
         once = true,
         callback = function()
           local argv0 = vim.fn.argv(0)
-          if type(argv0) ~= "string" or argv0 == "" then return end
+          if type(argv0) ~= "string" or argv0 == "" then
+            return
+          end
           local path = vim.fn.fnamemodify(argv0, ":p")
-          if vim.fn.isdirectory(path) ~= 1 then return end
+          if vim.fn.isdirectory(path) ~= 1 then
+            return
+          end
 
           vim.cmd("cd " .. vim.fn.fnameescape(path))
           for _, b in ipairs(vim.api.nvim_list_bufs()) do
@@ -32,7 +38,9 @@ return {
           end
           vim.schedule(function()
             local ok, snacks = pcall(require, "snacks")
-            if ok and snacks.dashboard then snacks.dashboard.open() end
+            if ok and snacks.dashboard then
+              snacks.dashboard.open()
+            end
             require("neo-tree.command").execute({ action = "show", source = "filesystem", position = "right" })
             vim.cmd("wincmd p")
           end)
@@ -89,8 +97,15 @@ return {
         indent = { with_expanders = true, expander_collapsed = "", expander_expanded = "" },
         git_status = {
           symbols = {
-            added = "✚", modified = "", deleted = "✖", renamed = "󰁕",
-            untracked = "", ignored = "", unstaged = "󰄱", staged = "", conflict = "",
+            added = "✚",
+            modified = "",
+            deleted = "✖",
+            renamed = "󰁕",
+            untracked = "",
+            ignored = "",
+            unstaged = "󰄱",
+            staged = "",
+            conflict = "",
           },
         },
       },

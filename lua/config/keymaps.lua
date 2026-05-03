@@ -20,7 +20,9 @@ map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Resize right" })
 
 map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
-map("n", "<C-q>", function() Snacks.bufdelete() end, { desc = "Close buffer" })
+map("n", "<C-q>", function()
+  Snacks.bufdelete()
+end, { desc = "Close buffer" })
 map("n", "<Tab>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 map("n", "<S-Tab>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 

@@ -1,5 +1,16 @@
 return {
   {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    opts = {
+      library = {
+        { path = "lazy.nvim", words = { "LazyPlugin" } },
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+
+  {
     "williamboman/mason.nvim",
     cmd = "Mason",
     build = ":MasonUpdate",
@@ -7,8 +18,11 @@ return {
     opts = {
       ui = { border = "rounded" },
       ensure_installed = {
-        "biome", "eslint_d", "prettierd",
-        "stylua", "shfmt",
+        "biome",
+        "eslint_d",
+        "prettierd",
+        "stylua",
+        "shfmt",
       },
     },
     config = function(_, opts)
@@ -22,10 +36,16 @@ return {
       local function ensure()
         for _, tool in ipairs(opts.ensure_installed) do
           local ok, p = pcall(mr.get_package, tool)
-          if ok and not p:is_installed() then p:install() end
+          if ok and not p:is_installed() then
+            p:install()
+          end
         end
       end
-      if mr.refresh then mr.refresh(ensure) else ensure() end
+      if mr.refresh then
+        mr.refresh(ensure)
+      else
+        ensure()
+      end
     end,
   },
 
@@ -50,9 +70,9 @@ return {
           signs = {
             text = {
               [vim.diagnostic.severity.ERROR] = " ",
-              [vim.diagnostic.severity.WARN]  = " ",
-              [vim.diagnostic.severity.INFO]  = " ",
-              [vim.diagnostic.severity.HINT]  = " ",
+              [vim.diagnostic.severity.WARN] = " ",
+              [vim.diagnostic.severity.INFO] = " ",
+              [vim.diagnostic.severity.HINT] = " ",
             },
           },
         },
@@ -62,7 +82,6 @@ return {
               Lua = {
                 workspace = { checkThirdParty = false },
                 completion = { callSnippet = "Replace" },
-                diagnostics = { globals = { "vim" } },
                 hint = { enable = true },
               },
             },
@@ -85,7 +104,18 @@ return {
           eslint = { settings = { workingDirectories = { mode = "auto" } } },
           biome = {},
           tailwindcss = {
-            filetypes = { "html", "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte", "astro" },
+            filetypes = {
+              "html",
+              "css",
+              "scss",
+              "javascript",
+              "javascriptreact",
+              "typescript",
+              "typescriptreact",
+              "vue",
+              "svelte",
+              "astro",
+            },
           },
           cssls = {},
           html = {},
@@ -124,8 +154,12 @@ return {
           map("<leader>lr", vim.lsp.buf.rename, "Rename")
           map("<leader>la", vim.lsp.buf.code_action, "Code action")
           map("<leader>ld", vim.diagnostic.open_float, "Line diagnostic")
-          map("[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, "Prev diagnostic")
-          map("]d", function() vim.diagnostic.jump({ count = 1, float = true }) end, "Next diagnostic")
+          map("[d", function()
+            vim.diagnostic.jump({ count = -1, float = true })
+          end, "Prev diagnostic")
+          map("]d", function()
+            vim.diagnostic.jump({ count = 1, float = true })
+          end, "Next diagnostic")
 
           if client and client:supports_method("textDocument/inlayHint") then
             vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
@@ -153,7 +187,14 @@ return {
     event = { "BufWritePre" },
     cmd = { "ConformInfo" },
     keys = {
-      { "<leader>cf", function() require("conform").format({ async = true, lsp_format = "fallback" }) end, mode = { "n", "v" }, desc = "Format" },
+      {
+        "<leader>cf",
+        function()
+          require("conform").format({ async = true, lsp_format = "fallback" })
+        end,
+        mode = { "n", "v" },
+        desc = "Format",
+      },
     },
     opts = {
       formatters_by_ft = {
@@ -175,14 +216,19 @@ return {
         yaml = { "prettierd" },
       },
       format_on_save = function(bufnr)
-        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then return end
+        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+          return
+        end
         return { timeout_ms = 1500, lsp_format = "fallback" }
       end,
     },
     init = function()
       vim.api.nvim_create_user_command("FormatToggle", function(args)
-        if args.bang then vim.b.disable_autoformat = not vim.b.disable_autoformat
-        else vim.g.disable_autoformat = not vim.g.disable_autoformat end
+        if args.bang then
+          vim.b.disable_autoformat = not vim.b.disable_autoformat
+        else
+          vim.g.disable_autoformat = not vim.g.disable_autoformat
+        end
       end, { desc = "Toggle autoformat", bang = true })
     end,
   },
@@ -205,7 +251,9 @@ return {
       lint.linters_by_ft = opts.linters_by_ft
       vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost", "InsertLeave" }, {
         group = vim.api.nvim_create_augroup("nvim_lint", { clear = true }),
-        callback = function() lint.try_lint() end,
+        callback = function()
+          lint.try_lint()
+        end,
       })
     end,
   },
