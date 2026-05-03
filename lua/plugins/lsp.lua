@@ -143,7 +143,7 @@ return {
       require("mason-lspconfig").setup({
         ensure_installed = vim.tbl_keys(servers),
         automatic_installation = true,
-        automatic_enable = true,
+        automatic_enable = { exclude = { "ts_ls" } },
       })
     end,
   },
