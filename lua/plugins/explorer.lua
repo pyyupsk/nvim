@@ -91,6 +91,10 @@ return {
             local node = state.tree:get_node()
             vim.fn.setreg("+", node.path, "c")
           end,
+          ["yn"] = function(state)
+            local node = state.tree:get_node()
+            vim.fn.setreg("+", vim.fn.fnamemodify(node.path, ":t"), "c")
+          end,
         },
       },
       default_component_configs = {

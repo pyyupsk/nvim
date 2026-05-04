@@ -52,3 +52,9 @@ map("i", "<C-_>", "<Esc>gcc", { desc = "Comment line", remap = true })
 
 map("n", "q", "<nop>", { desc = "Disable macro recording" })
 map("n", "Q", "<nop>", { desc = "Disable Ex mode" })
+
+map("n", "gx", function()
+  local url = vim.fn.expand("<cfile>")
+  vim.ui.open(url)
+  Snacks.notify.info("Opened: " .. url, { title = "Browser" })
+end, { desc = "Open URL" })
