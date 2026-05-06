@@ -12,7 +12,8 @@ return {
 
   {
     "williamboman/mason.nvim",
-    cmd = "Mason",
+    lazy = false,
+    priority = 100,
     build = ":MasonUpdate",
     keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
     opts = {
@@ -23,6 +24,10 @@ return {
         "prettierd",
         "stylua",
         "shfmt",
+        "jdtls",
+        "google-java-format",
+        "gofumpt",
+        "goimports",
       },
     },
     config = function(_, opts)
@@ -129,6 +134,24 @@ return {
           vue_ls = {
             init_options = { vue = { hybridMode = false } },
           },
+          gopls = {
+            settings = {
+              gopls = {
+                hints = {
+                  assignVariableTypes = true,
+                  compositeLiteralFields = true,
+                  compositeLiteralTypes = true,
+                  constantValues = true,
+                  functionTypeParameters = true,
+                  parameterNames = true,
+                  rangeVariableTypes = true,
+                },
+              },
+            },
+          },
+          basedpyright = {},
+          rust_analyzer = {},
+          clangd = {},
         },
       }
     end,
@@ -177,7 +200,7 @@ return {
       require("mason-lspconfig").setup({
         ensure_installed = vim.tbl_keys(servers),
         automatic_installation = true,
-        automatic_enable = { exclude = { "ts_ls" } },
+        automatic_enable = { exclude = { "ts_ls", "jdtls" } },
       })
     end,
   },
@@ -214,6 +237,8 @@ return {
         html = { "prettierd" },
         markdown = { "prettierd" },
         yaml = { "prettierd" },
+        java = { "google-java-format" },
+        go = { "goimports", "gofumpt" },
       },
       format_on_save = function(bufnr)
         if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
@@ -230,6 +255,40 @@ return {
           vim.g.disable_autoformat = not vim.g.disable_autoformat
         end
       end, { desc = "Toggle autoformat", bang = true })
+    end,
+  },
+
+  {
+    "mfussenegger/nvim-jdtls",
+    ft = "java",
+    config = function()
+      local function start()
+        local root = vim.fs.root(0, { "gradlew", "mvnw", "pom.xml", "build.gradle", ".git" })
+        local name = vim.fn.fnamemodify(root or vim.fn.getcwd(), ":p:h:t")
+        local workspace = vim.fn.stdpath("cache") .. "/jdtls/" .. name
+        require("jdtls").start_or_attach({
+          cmd = { vim.fn.exepath("jdtls"), "-data", workspace },
+          root_dir = root,
+          capabilities = require("blink.cmp").get_lsp_capabilities(),
+          settings = {
+            java = {
+              signatureHelp = { enabled = true },
+              inlayHints = { parameterNames = { enabled = "all" } },
+              completion = { favoriteStaticMembers = { "org.junit.jupiter.api.Assertions.*" } },
+            },
+          },
+        })
+      end
+
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("user_jdtls", { clear = true }),
+        pattern = "java",
+        callback = start,
+      })
+
+      if vim.bo.filetype == "java" then
+        start()
+      end
     end,
   },
 
