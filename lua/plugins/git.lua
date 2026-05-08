@@ -15,12 +15,12 @@ return {
   },
 
   {
-    "sindrets/diffview.nvim",
-    cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles", "DiffviewFileHistory" },
+    "esmuellert/codediff.nvim",
+    cmd = "CodeDiff",
     keys = {
-      { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Diffview" },
-      { "<leader>gh", "<cmd>DiffviewFileHistory %<cr>", desc = "File history" },
-      { "<leader>gH", "<cmd>DiffviewFileHistory<cr>", desc = "Branch history" },
+      { "<leader>gd", "<cmd>CodeDiff<cr>", desc = "CodeDiff (status)" },
+      { "<leader>gD", "<cmd>CodeDiff file HEAD<cr>", desc = "CodeDiff vs HEAD" },
+      { "<leader>gh", "<cmd>CodeDiff history<cr>", desc = "File history" },
     },
   },
 
