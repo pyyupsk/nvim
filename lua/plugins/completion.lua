@@ -10,6 +10,7 @@ return {
       map("i", "<M-]>", function() return vim.fn["codeium#CycleCompletions"](1) end, { expr = true, silent = true, desc = "Codeium: next" })
       map("i", "<M-[>", function() return vim.fn["codeium#CycleCompletions"](-1) end, { expr = true, silent = true, desc = "Codeium: prev" })
       map("i", "<M-e>", function() return vim.fn["codeium#Clear"]() end, { expr = true, silent = true, desc = "Codeium: clear" })
+      map("n", "<leader>ua", "<cmd>CodeiumToggle<cr>", { desc = "Toggle AI suggestions" })
     end,
   },
 
@@ -19,7 +20,7 @@ return {
     version = "*",
     dependencies = { "rafamadriz/friendly-snippets", "folke/lazydev.nvim" },
     opts = {
-      keymap = { preset = "default" },
+      keymap = { preset = "enter" },
       appearance = { nerd_font_variant = "mono" },
       completion = {
         accept = { auto_brackets = { enabled = true } },
