@@ -37,9 +37,18 @@ Completion is `blink.cmp` (see `completion.lua`); LSP capabilities flow from the
 - Format current buffer — `<leader>cf` (or `:lua require("conform").format()`).
 - Headless smoke test — `nvim --headless "+Lazy! sync" +qa` (also runs in CI-style checks).
 
+## Completion / AI
+
+- `blink.cmp` uses the `enter` preset (Enter accepts, Tab is free for snippet jumps / Codeium).
+- Codeium (`windsurf.vim`) provides inline AI completions on `<M-*>` bindings; toggle with `<leader>ua`. Lualine shows the on/off state.
+
+## Run current file
+
+`lua/config/keymaps.lua` defines `<leader>r{j,n,p,l,g,r,b}` runners (java/node/python/lua/go/rust/bash) that open a terminal split. Add a language by extending the `runners` and `labels` tables — keep this in `keymaps.lua`, not a plugin spec.
+
 ## Conventions
 
-- Keymaps that target plugin commands belong in that plugin's `keys = { ... }` spec (so they trigger lazy-load), not `lua/config/keymaps.lua`. `keymaps.lua` is for pure-vim/builtin maps only.
+- Keymaps that target plugin commands belong in that plugin's `keys = { ... }` spec (so they trigger lazy-load), not `lua/config/keymaps.lua`. `keymaps.lua` is for pure-vim/builtin maps and editor-wide helpers (e.g., the language runners).
 - Plugin spec style: prefer `opts = { ... }` over a `config` function. Use `config = function(_, opts)` only when setup needs imperative work (autocmds, custom registries, `vim.lsp.config` loops).
 - Trigger lazy-loading via `event` / `cmd` / `keys` / `ft` — avoid `lazy = false` unless the plugin must load at startup (colorscheme is the typical exception).
 - 2-space indent, double-quoted strings, no trailing semicolons — match the existing files.
