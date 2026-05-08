@@ -56,3 +56,4 @@ opt.laststatus = 3
 opt.cmdheight = 1
 
 vim.g.have_nerd_font = true
+vim.g.js_runtime = "bun" -- "node" | "bun" | "deno"

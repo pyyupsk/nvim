@@ -53,6 +53,27 @@ map("i", "<C-_>", "<Esc>gcc", { desc = "Comment line", remap = true })
 map("n", "q", "<nop>", { desc = "Disable macro recording" })
 map("n", "Q", "<nop>", { desc = "Disable Ex mode" })
 
+local function run(cmd)
+  vim.cmd("write")
+  vim.cmd("split | terminal " .. cmd)
+  vim.cmd("startinsert")
+end
+
+local runners = {
+  j = function() return "java " .. vim.fn.shellescape(vim.fn.expand("%")) end,
+  n = function() return ("%s %s"):format(vim.g.js_runtime or "node", vim.fn.shellescape(vim.fn.expand("%"))) end,
+  p = function() return "python3 " .. vim.fn.shellescape(vim.fn.expand("%")) end,
+  l = function() return "lua " .. vim.fn.shellescape(vim.fn.expand("%")) end,
+  g = function() return "go run " .. vim.fn.shellescape(vim.fn.expand("%")) end,
+  r = function() return ("rustc %s -o /tmp/%s && /tmp/%s"):format(vim.fn.shellescape(vim.fn.expand("%")), vim.fn.expand("%:t:r"), vim.fn.expand("%:t:r")) end,
+  b = function() return "bash " .. vim.fn.shellescape(vim.fn.expand("%")) end,
+}
+
+local labels = { j = "Java", n = "JS/TS", p = "Python", l = "Lua", g = "Go", r = "Rust", b = "Bash" }
+for key, builder in pairs(runners) do
+  map("n", "<leader>r" .. key, function() run(builder()) end, { desc = "Run " .. labels[key] })
+end
+
 map("n", "gx", function()
   local url = vim.fn.expand("<cfile>")
   vim.ui.open(url)
