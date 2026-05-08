@@ -168,7 +168,24 @@ return {
           { "diagnostics", symbols = { error = " ", warn = " ", info = " ", hint = " " } },
           { "filename", path = 1, symbols = { modified = "  ", readonly = "", unnamed = "" } },
         },
-        lualine_x = { "diff", "encoding", "fileformat", "filetype" },
+        lualine_x = {
+          {
+            function()
+              local g = vim.g.codeium_enabled
+              local on = g == nil or g == true or g == 1
+              return on and "󰚩 on" or "󰚩 off"
+            end,
+            color = function()
+              local g = vim.g.codeium_enabled
+              local on = g == nil or g == true or g == 1
+              return { fg = on and "#a6e3a1" or "#6c7086" }
+            end,
+          },
+          "diff",
+          "encoding",
+          "fileformat",
+          "filetype",
+        },
         lualine_y = { "progress" },
         lualine_z = { "location" },
       },
