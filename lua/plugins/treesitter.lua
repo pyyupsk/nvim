@@ -15,6 +15,7 @@ return {
         "gomod",
         "gosum",
         "html",
+        "java",
         "javascript",
         "json",
         "lua",
