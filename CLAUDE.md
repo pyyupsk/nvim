@@ -24,7 +24,7 @@ Single file owns the full toolchain — keep additions here, not split.
 - **mason-lspconfig** auto-installs every key in the `servers` table, then enables them. To add a server: add a key under `servers` with its config — install + enable is automatic.
 - Server config uses Neovim 0.11 `vim.lsp.config(name, cfg)` API (not the old `lspconfig.<name>.setup`). Capabilities come from `blink.cmp`.
 - Keymaps and inlay-hint enable live in the `LspAttach` autocmd — not per-server.
-- **conform.nvim** does formatting; chain order matters (`{ "biome", "prettierd", stop_after_first = true }` → biome wins when present). `format_on_save` respects `vim.g.disable_autoformat` / `vim.b.disable_autoformat`; toggle with `:FormatToggle` (buffer-local with `!`).
+- **conform.nvim** does formatting; chain order matters (`{ "oxfmt", "biome", "prettierd", stop_after_first = true }` → oxfmt wins, then biome, then prettierd). oxfmt installed globally via `bun add -g oxfmt` (not Mason). `format_on_save` respects `vim.g.disable_autoformat` / `vim.b.disable_autoformat`; toggle with `:FormatToggle` (buffer-local with `!`).
 - **nvim-lint** runs `eslint_d` on `BufReadPost`/`BufWritePost`/`InsertLeave`.
 
 Completion is `blink.cmp` (see `completion.lua`); LSP capabilities flow from there into every server via `vim.lsp.config("*", { capabilities })`.

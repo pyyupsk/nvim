@@ -7,7 +7,7 @@ Personal Neovim config. TypeScript-first, lazy-loaded, opinionated.
 - **Plugin manager** — [lazy.nvim](https://github.com/folke/lazy.nvim) (everything `lazy = true` by default)
 - **Completion** — [blink.cmp](https://github.com/saghen/blink.cmp)
 - **LSP** — `nvim-lspconfig` + `mason-lspconfig` (auto-install)
-- **Format** — `conform.nvim` (biome → prettierd → stylua)
+- **Format** — `conform.nvim` (oxfmt → biome → prettierd → stylua)
 - **Lint** — `nvim-lint` (`eslint_d`)
 - **Treesitter** — `main` branch
 - **Theme** — Catppuccin Mocha
