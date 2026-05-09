@@ -29,7 +29,7 @@ return {
     cmd = "Octo",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
+      "folke/snacks.nvim",
       "echasnovski/mini.icons",
     },
     keys = {
@@ -42,7 +42,7 @@ return {
     },
     opts = {
       enable_builtin = true,
-      picker = "telescope",
+      picker = "snacks",
       use_local_fs = true,
     },
   },

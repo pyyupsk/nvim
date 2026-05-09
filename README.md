@@ -37,9 +37,8 @@ lua/plugins/
   editor.lua           -- autopairs, surround, flash, persistence, grug-far
   explorer.lua         -- neo-tree, oil
   git.lua              -- gitsigns, diffview
-  telescope.lua
   treesitter.lua
-  ui.lua               -- catppuccin, snacks, lualine, bufferline, noice, which-key, render-markdown
+  ui.lua               -- catppuccin, snacks (picker, image, dashboard, ...), lualine, bufferline, noice, which-key, render-markdown
   claudecode.lua
 lazy-lock.json         -- committed lockfile
 ```
@@ -180,28 +179,28 @@ Leader: `<Space>` · Localleader: `\`
 
 ### AI (Codeium / windsurf.vim)
 
-| Key          | Action                  |
-| ------------ | ----------------------- |
-| `Alt+y`      | Accept suggestion       |
-| `Alt+w`      | Accept next word        |
-| `Alt+]`      | Next suggestion         |
-| `Alt+[`      | Prev suggestion         |
-| `Alt+e`      | Clear suggestion        |
-| `<leader>ua` | Toggle AI suggestions   |
+| Key          | Action                |
+| ------------ | --------------------- |
+| `Alt+y`      | Accept suggestion     |
+| `Alt+w`      | Accept next word      |
+| `Alt+]`      | Next suggestion       |
+| `Alt+[`      | Prev suggestion       |
+| `Alt+e`      | Clear suggestion      |
+| `<leader>ua` | Toggle AI suggestions |
 
 Run `:Codeium Auth` once after install to authenticate. Codeium status is shown in lualine.
 
 ### Run current file
 
-| Key           | Action        |
-| ------------- | ------------- |
-| `<leader>rj`  | Run Java      |
-| `<leader>rn`  | Run JS/TS     |
-| `<leader>rp`  | Run Python    |
-| `<leader>rl`  | Run Lua       |
-| `<leader>rg`  | Run Go        |
-| `<leader>rr`  | Run Rust      |
-| `<leader>rb`  | Run Bash      |
+| Key          | Action     |
+| ------------ | ---------- |
+| `<leader>rj` | Run Java   |
+| `<leader>rn` | Run JS/TS  |
+| `<leader>rp` | Run Python |
+| `<leader>rl` | Run Lua    |
+| `<leader>rg` | Run Go     |
+| `<leader>rr` | Run Rust   |
+| `<leader>rb` | Run Bash   |
 
 Opens a horizontal split terminal. Override JS runtime with `vim.g.js_runtime` (default `node`).
 

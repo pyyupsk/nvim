@@ -11,7 +11,7 @@ Personal Neovim config. Lua. Plugin manager: `lazy.nvim`. Leader: `<Space>`, loc
 - `init.lua` — bootstrap; loads `config.{options,keymaps,autocmds,lazy}` in order.
 - `lua/config/lazy.lua` — clones lazy.nvim, imports `plugins/` spec, defaults `lazy = true, version = false`. Colorschemes installed: `catppuccin`, `habamax`.
 - `lua/config/{options,keymaps,autocmds}.lua` — editor-wide settings, no plugin logic.
-- `lua/plugins/*.lua` — one file per concern (`lsp`, `completion`, `editor`, `explorer`, `git`, `telescope`, `treesitter`, `ui`, `claudecode`). Each returns a lazy spec table; lazy auto-imports them.
+- `lua/plugins/*.lua` — one file per concern (`lsp`, `completion`, `editor`, `explorer`, `git`, `treesitter`, `ui`, `claudecode`). Each returns a lazy spec table; lazy auto-imports them. Picker is `Snacks.picker` (configured inside `ui.lua`).
   - `editor.lua` also owns session restore (`persistence.nvim`, `<leader>q*`) and project search/replace (`grug-far.nvim`, `<leader>sR`).
   - `ui.lua` owns markdown rendering (`render-markdown.nvim`, `<leader>um`).
 - `lazy-lock.json` — committed lockfile; do not hand-edit.

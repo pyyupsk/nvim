@@ -31,7 +31,7 @@ return {
         end,
         desc = "Prev todo",
       },
-      { "<leader>st", "<cmd>TodoTelescope<cr>", desc = "Todo list" },
+      { "<leader>st", function() Snacks.picker.todo_comments() end, desc = "Todo list" },
     },
     opts = {},
   },

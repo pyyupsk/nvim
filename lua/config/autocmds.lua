@@ -31,7 +31,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("FileType", {
   group = augroup("no_scrolloff"),
-  pattern = { "TelescopePrompt", "TelescopeResults", "snacks_picker_input", "snacks_picker_list" },
+  pattern = { "snacks_picker_input", "snacks_picker_list" },
   callback = function()
     vim.wo.sidescrolloff = 0
     vim.wo.scrolloff = 0
